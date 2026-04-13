@@ -160,6 +160,99 @@ ul     { list-style: none; }
   border-color: var(--accent-hover);
 }
 
+/* ── Education ───────────────────────────────────────────────────────────── */
+.education__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 32px;
+  max-width: 720px;
+}
+
+.education__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.education__school {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.education__meta {
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: var(--text-muted);
+}
+
+.education__degree {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.education__coursework-label {
+  font-size: 0.75rem;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.education__coursework {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ── Skills ──────────────────────────────────────────────────────────────── */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 40px;
+}
+
+.skills__group {
+  margin: 0;
+}
+
+.skills__title {
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.skills__items {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.skills__interests {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.skills__interests-label {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ── Projects ────────────────────────────────────────────────────────────── */
 .projects__grid {
   display: grid;
@@ -334,6 +427,10 @@ ul     { list-style: none; }
   .nav { padding: 0 20px; }
   .nav__links li button { padding: 8px 10px; font-size: 0.78rem; }
   .section { padding: 80px 0; }
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
 
   .exp { flex-direction: column; }
   .exp__tabs {
