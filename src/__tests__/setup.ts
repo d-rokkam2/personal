@@ -1,3 +1,5 @@
+// Vitest global test setup: registers jest-dom matchers and polyfills browser APIs
+// (IntersectionObserver, scrollIntoView) that jsdom does not implement.
 import '@testing-library/jest-dom'
 
 // IntersectionObserver is not implemented in jsdom

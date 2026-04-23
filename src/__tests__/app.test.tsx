@@ -1,3 +1,5 @@
+// Unit smoke tests for the App component using React Testing Library.
+// Covers rendering, navigation links, section content, tab switching, and external links.
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'

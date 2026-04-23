@@ -1,3 +1,5 @@
+// Playwright fleet tests verifying the portfolio renders and behaves correctly
+// across Chromium, Firefox, and Pixel 5 mobile viewport.
 import { test, expect } from '@playwright/test'
 
 test.describe('Portfolio — fleet tests', () => {

@@ -1,3 +1,5 @@
+// Playwright config: runs E2E tests against the Vite preview server (port 4173)
+// on Chromium, Firefox, and Pixel 5 mobile. Retries twice in CI.
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({

@@ -1,3 +1,5 @@
+# CI pipeline: typecheck, build, and unit tests run first; E2E fleet tests run after.
+# Both jobs must pass to unblock PR merges into main or rok.
 name: CI
 
 on:
