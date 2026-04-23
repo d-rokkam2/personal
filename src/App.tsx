@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useIntersection } from './hooks/useIntersection'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -110,6 +111,18 @@ const EXPERIENCE = [
     ],
   },
 ]
+
+// ── Animation wrapper ─────────────────────────────────────────────────────────
+
+function FadeIn({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const visible = useIntersection(ref)
+  return (
+    <div ref={ref} className={visible ? 'fade-in fade-in--visible' : 'fade-in'}>
+      {children}
+    </div>
+  )
+}
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -356,11 +369,11 @@ export default function App() {
       <Navbar />
       <main>
         <About />
-        <Education />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <FadeIn><Education /></FadeIn>
+        <FadeIn><Skills /></FadeIn>
+        <FadeIn><Projects /></FadeIn>
+        <FadeIn><Experience /></FadeIn>
+        <FadeIn><Contact /></FadeIn>
       </main>
       <Footer />
     </>
