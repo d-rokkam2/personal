@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 
 // IntersectionObserver is not implemented in jsdom
-global.IntersectionObserver = class IntersectionObserver {
+globalThis.IntersectionObserver = class IntersectionObserver {
   constructor() {}
   observe() {}
   unobserve() {}
