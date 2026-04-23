@@ -54,8 +54,9 @@ describe('App — smoke tests', () => {
 
   it('renders GitHub social link', () => {
     render(<App />)
-    const ghLink = screen.getByRole('link', { name: /github/i })
-    expect(ghLink).toHaveAttribute('href', 'https://github.com/d-rokkam2')
+    const ghLinks = screen.getAllByRole('link', { name: /github/i })
+    const profileLink = ghLinks.find(el => el.getAttribute('href') === 'https://github.com/d-rokkam2')
+    expect(profileLink).toBeDefined()
   })
 
   it('renders footer', () => {
