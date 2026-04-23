@@ -1,5 +1,8 @@
 /tmp
 /out-tsc
+.env.local
+playwright-report/
+test-results/
 
 /node_modules
 npm-debug.log*
