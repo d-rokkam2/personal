@@ -160,6 +160,22 @@ ul     { list-style: none; }
   border-color: var(--accent-hover);
 }
 
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.hero__actions .btn {
+  margin-top: 0;
+}
+.btn--ghost {
+  opacity: 0.7;
+}
+.btn--ghost:hover {
+  opacity: 1;
+}
+
 /* ── Education ───────────────────────────────────────────────────────────── */
 .education__card {
   background: var(--bg-card);

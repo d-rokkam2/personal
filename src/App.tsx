@@ -188,9 +188,14 @@ function About() {
           closing the gap between machine learning research and production software—from APIs and data
           pipelines to interfaces people rely on.
         </p>
-        <button className="btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-          Get in touch
-        </button>
+        <div className="hero__actions">
+          <button className="btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            Get in touch
+          </button>
+          <a href="/resume.pdf" download="Dhruv_Rokkam_Resume.pdf" className="btn btn--ghost">
+            Download Resume
+          </a>
+        </div>
       </div>
     </section>
   )
