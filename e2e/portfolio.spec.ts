@@ -44,8 +44,7 @@ test.describe('Portfolio — fleet tests', () => {
 
   test('GitHub social link is correct', async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByRole('link', { name: /github/i }).first())
-      .toHaveAttribute('href', 'https://github.com/d-rokkam2')
+    await expect(page.locator('a[href="https://github.com/d-rokkam2"]')).toBeVisible()
   })
 
   test('mobile viewport — hero is visible', async ({ page }) => {
