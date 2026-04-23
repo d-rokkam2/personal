@@ -1,0 +1,73 @@
+# CI pipeline: typecheck, build, and unit tests run first; E2E fleet tests run after.
+# Both jobs must pass to unblock PR merges into main or rok.
+name: CI
+
+on:
+  pull_request:
+    branches: [main, rok]
+  push:
+    branches: [main, rok]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Job 1: Type check + build + unit tests ─────────────────────────────────
+  unit:
+    name: Typecheck, Build & Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      - name: Unit tests
+        run: npm test
+
+  # ── Job 2: E2E fleet tests (requires unit job to pass first) ───────────────
+  e2e:
+    name: E2E Fleet Tests
+    runs-on: ubuntu-latest
+    needs: unit
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox
+
+      - name: Build
+        run: npm run build
+
+      - name: Run E2E tests
+        run: npx playwright test
+
+      - name: Upload test report on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
