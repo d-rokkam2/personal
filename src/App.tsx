@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { PinModal, InvestmentSection } from './Investment'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -340,20 +341,40 @@ function Contact() {
   )
 }
 
-function Footer() {
+function Footer({ onLockClick }: { onLockClick: () => void }) {
   return (
     <footer className="footer">
       <p>Designed &amp; Built by Dhruv Rokkam</p>
+      <button className="footer__lock" onClick={onLockClick} title="Private section" aria-label="Open private section">
+        🔒
+      </button>
     </footer>
   )
 }
 
 // ── App ───────────────────────────────────────────────────────────────────────
 
+type InvestState = 'locked' | 'pin' | 'unlocked'
+
 export default function App() {
+  const [investState, setInvestState] = useState<InvestState>('locked')
+
+  const handleUnlock = () => setInvestState('unlocked')
+  const handleLock   = () => setInvestState('locked')
+  const handleFooterLock = () =>
+    setInvestState(s => s === 'unlocked' ? 'locked' : 'pin')
+
   return (
     <>
       <Navbar />
+
+      {investState === 'pin' && (
+        <PinModal
+          onSuccess={handleUnlock}
+          onClose={() => setInvestState('locked')}
+        />
+      )}
+
       <main>
         <About />
         <Education />
@@ -361,8 +382,12 @@ export default function App() {
         <Projects />
         <Experience />
         <Contact />
+        {investState === 'unlocked' && (
+          <InvestmentSection onLock={handleLock} />
+        )}
       </main>
-      <Footer />
+
+      <Footer onLockClick={handleFooterLock} />
     </>
   )
 }
